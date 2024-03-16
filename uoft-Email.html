@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+    <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+    <meta name="x-apple-disable-message-reformatting">  <!-- Disable auto-scale in iOS 10 Mail entirely -->
+    <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no"> <!-- Tell iOS not to automatically link certain text strings. -->
+    <meta name="color-scheme" content="light">
+    <meta name="supported-color-schemes" content="light">
+    <title></title> <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+    <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+    <!-- Web Font / @font-face : BEGIN -->
+    <!-- NOTE: If web fonts are not required, lines 23 - 41 can be safely removed. -->
+
+    <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+    <!--[if mso]>
+        <style>
+            * {
+                font-family: 'Arial', Arial !important;
+
+            }
+        </style>
+    <![endif]-->
+
+    <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+    <!--[if !mso]><!-->
+    <!-- insert web font reference, eg: <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'> -->
+    <!--<![endif]-->
+
+    <!-- Web Font / @font-face : END -->
+
+    <!-- CSS Reset : BEGIN -->
+    <style>
+
+        /* What it does: Tells the email client that only light styles are provided but the client can transform them to dark. A duplicate of meta color-scheme meta tag above. */
+        :root {
+          color-scheme: light;
+          supported-color-schemes: light;
+        }
+
+        /* What it does: Remove spaces around the email design added by some email clients. */
+        /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+        html,
+        body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        /* What it does: Stops email clients resizing small text. */
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        /* What it does: Centers email on Android 4.4 */
+        div[style*="margin: 16px 0"] {
+            margin: 0 !important;
+        }
+        /* What it does: forces Samsung Android mail clients to use the entire viewport */
+        #MessageViewBody, #MessageWebViewDiv{
+            width: 100% !important;
+        }
+
+        /* What it does: Stops Outlook from adding extra spacing to tables. */
+        table,
+        td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+
+        /* What it does: Fixes webkit padding issue. */
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+
+        /* What it does: Uses a better rendering method when resizing images in IE. */
+        img {
+            -ms-interpolation-mode:bicubic;
+        }
+
+        /* What it does: Prevents Windows 10 Mail from underlining links despite inline CSS. Styles for underlined links should be inline. */
+        a {
+            text-decoration: none;
+        }
+
+        /* What it does: A work-around for email clients meddling in triggered links. */
+        a[x-apple-data-detectors],  /* iOS */
+        .unstyle-auto-detected-links a,
+        .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from changing the text color in conversation threads. */
+        .im {
+            color: inherit !important;
+        }
+
+        /* What it does: Prevents Gmail from displaying a download button on large, non-linked images. */
+        .a6S {
+            display: none !important;
+            opacity: 0.01 !important;
+        }
+        /* If the above doesn't work, add a .g-img class to any image in question. */
+        img.g-img + div {
+            display: none !important;
+        }
+
+        /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+        /* Create one of these media queries for each additional viewport size you'd like to fix */
+
+        /* iPhone 4, 4S, 5, 5S, 5C, and 5SE */
+        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+            u ~ div .email-container {
+                min-width: 320px !important;
+            }
+        }
+        /* iPhone 6, 6S, 7, 8, and X */
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+            u ~ div .email-container {
+                min-width: 375px !important;
+            }
+        }
+        /* iPhone 6+, 7+, and 8+ */
+        @media only screen and (min-device-width: 414px) {
+            u ~ div .email-container {
+                min-width: 414px !important;
+            }
+        }
+
+    </style>
+    <!-- CSS Reset : END -->
+
+    <!-- Progressive Enhancements : BEGIN -->
+    <style>
+
+	    /* What it does: Hover styles for buttons */
+	    .button-td,
+	    .button-a {
+	        transition: all 100ms ease-in;
+	    }
+	    .button-td-primary:hover,
+	    .button-a-primary:hover {
+	        background: #555555 !important;
+	        border-color: #555555 !important;
+	    }
+
+        .mobile-btn {
+            margin: 0 !important;
+        }
+
+        .mobile-hr {
+            padding: 10px 0 0 0;
+        }
+
+	    /* Media Queries */
+	    @media screen and (max-width: 480px) {
+
+	        /* What it does: Forces table cells into full-width rows. */
+	        .stack-column,
+	        .stack-column-center {
+	            display: block !important;
+	            width: 100% !important;
+	            max-width: 100% !important;
+	            direction: ltr !important;
+	        }
+	        /* And center justify these ones. */
+	        .stack-column-center {
+	            text-align: center !important;
+	        }
+
+	        /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+	        .center-on-narrow {
+	            text-align: center !important;
+	            display: block !important;
+	            margin-left: auto !important;
+	            margin-right: auto !important;
+	            float: none !important;
+	        }
+	        table.center-on-narrow {
+	            display: inline-block !important;
+	        }
+
+	        /* What it does: Adjust typography on small screens to improve readability */
+	        .email-container p {
+	            font-size: 18px !important;
+	        }
+
+            .mobile-btn {
+                margin: auto !important;
+                
+            }
+
+            .mobile-hr {
+                padding: 10px 20px 0 20px;
+            }
+	    }
+
+    </style>
+    <!-- Progressive Enhancements : END -->
+
+</head>
+<!--
+	The email background color (#222222) is defined in three places:
+	1. body tag: for most email clients
+	2. center tag: for Gmail and Inbox mobile apps and web versions of Gmail, GSuite, Inbox, Yahoo, AOL, Libero, Comcast, freenet, Mail.ru, Orange.fr
+	3. mso conditional: For Windows 10 Mail
+-->
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #DFDDDB">
+  <center role="article" aria-roledescription="email" lang="en" style="width: 100%; background-color: #DFDDDB;">
+    <!--[if mso | IE]>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #DFDDDB;">
+    <tr>
+    <td>
+    <![endif]-->
+
+        <!-- Visually Hidden Preheader Text : BEGIN -->
+        <div style="max-height:0; overflow:hidden; mso-hide:all;" aria-hidden="true">
+            
+        </div>
+        <!-- Visually Hidden Preheader Text : END -->
+
+        <!-- Create white space after the desired preview text so email clients don’t pull other distracting text into the inbox preview. Extend as necessary. -->
+        <!-- Preview Text Spacing Hack : BEGIN -->
+        <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: Arial, sans-serif;">
+            &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
+        </div>
+        <!-- Preview Text Spacing Hack : END -->
+
+        <!--
+            Set the email width. Defined in two places:
+            1. max-width for all clients except Desktop Windows Outlook, allowing the email to squish on narrow but never go wider than 680px.
+            2. MSO tags for Desktop Windows Outlook enforce a 680px width.
+            Note: The Fluid and Responsive templates have a different width (600px). The hybrid grid is more "fragile", and I've found that 680px is a good width. Change with caution.
+        -->
+        <div style="max-width: 680px; margin: 0 auto; background: #DFDDDB;" class="email-container">
+            <!--[if mso]>
+            <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="680">
+            <tr>
+            <td>
+            <![endif]-->
+            
+	        <!-- Email Body : BEGIN -->
+	        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto; max-width: 660px;">
+
+
+
+            <!-- UofT Email Padding : BEGIN -->
+            <tr>
+                <td style="background-color: #DFDDDB; padding: 20px 10px;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+
+                <!-- View Email Online : BEGIN -->
+                <!-- <tr>
+                    <td style="background-color: #DFDDDB; text-align: center;padding-top:10px;">
+                        <a href="##HTMLNewsletterURL##"style="color: #002a5c;text-decoration: underline; font-weight: bold;font-size:11px;font-family: Arial, sans-serif;">View email online</a>
+                    </td>
+                </tr> -->
+                <!-- View Email Online : END -->
+
+                    
+
+                
+
+
+		        <!-- University of Toronto Logo : BEGIN -->
+                <tr>
+                    <td style="padding: 10px 30px; text-align: left; background-color: #ffffff;">
+                      <img src="photos/uoft-logo.png" width="170" height="auto" alt="University of Toronto logo" border="0" style="height: auto;background: #ffffff; font-family: Arial, sans-serif; font-size: 14px;line-height: 25px;max-width: 170px;width:100%; color: #555555;"class="g-img"/>
+                    </td>
+                  </tr>
+		        <!-- University of Toronto Logo : END -->
+
+
+
+                <!-- Hero Image, Flush : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 660px;">
+
+                              <tr>
+                                  <td style="background-color: #ffffff;padding: 0; text-align: center;">
+                                              <img data-file-id="1172035" height="auto" src="photos/banner.png" style="width: 100%; max-width: 660px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto; display: block;" width="660" class="g-img" alt="Bloomberg Nursing Banner">
+                                  </td>
+                              </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- Hero Image, Flush : END -->
+
+
+
+
+                <!-- Full-Width Text Column : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 640px;">
+                                
+
+                            <tr>
+                                <td style="padding: 60px 30px 0 30px; font-family: Arial, sans-serif; font-size: 14px; line-height: 25px; letter-spacing: 0.5px; color: #000000;">
+                                    <span style="font-size: 17px; text-transform: uppercase;"><strong>U of T one of only eight universities placing in top 50 across all subjects</strong></span>
+                                    <br/><br/> 
+                                    Design consectetur adipiscing elit. Phasellus a ipsum a risus volutpat placerat in nec mauris. Fusce sit amet enim erat, in sagittis arcu. Aliquam dolor dolor, semper id tempor et, varius pulvinar tellus. Maurtis commodo urna at dui bibendum quis euismod velit egestas. Vestibulum ante ipsum primis in faucibus orci luctus et.
+                                                                        
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td style="padding: 20px; margin:20px;">
+    
+
+                                <!-- Button : BEGIN -->
+                                <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+
+                                <tr>
+
+                                    <td class="button-td button-td-primary" style="background: #007fa3; border-radius: 25px; font-family: Arial, sans-serif;">
+                                        <a class="button-a button-a-primary" href="https://www.utoronto.ca/" style="background: #007fa3; border: 2px solid #007fa3; font-family: Arial, sans-serif; font-size: 14px; line-height: 16px; font-weight:bold; text-decoration: none; padding: 15px 18px; color: #ffffff; display: block; border-radius: 25px; width: 160px; text-align: center;">
+                                            Register now
+                                        </a>
+                                    </td>
+
+                                </tr>
+
+                                </table>
+                                <!-- Button : END -->
+                                
+                                </td>
+                            </tr>
+                           
+                        </table>
+                    </td>
+                </tr>
+                <!-- Full-Width Text Column : END -->           
+                
+                
+
+        
+
+
+ 
+
+
+
+                                <!-- Half-Width Column : BEGIN -->
+                                <tr>
+                                    <td align="center" valign="top" style="font-size:0; background-color: #ffffff; padding: 10px;">
+                                        <!--[if mso]>
+                                        <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="620">
+                                        <tr>
+                                        <td valign="top" width="310">
+                                        <![endif]-->
+                                        <div style="display:inline-block; margin: 0 -1px; width:100%; min-width:200px; max-width:310px; vertical-align:top;" class="stack-column">
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="padding: 10px;">
+                                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px; text-align: left;">
+        
+                                                            <tr>
+                                                                <td>
+                                                                    <img src="http://engage.utoronto.ca/images/content/pagebuilder/63623_story3.jpg" width="290" height="" border="0" alt="Image of an old women" style="width: 100%; max-width: 310px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="center-on-narrow">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;" class="stack-column">
+                                                                    <h3 style="margin: 20px 0; font-size: 24px; line-height: 30px;font-weight: bold; font-family: Arial, sans-serif;"></h3>
+                                                                    <span style="font-size: 18px"><strong>U of T Nursing alum and public health advocate appointed to Order of Canada</strong>
+                                                                    <br/>
+                                                                    
+                                                                    </span>
+
+                                                                </td>
+                                                            </tr>
+                                                            
+
+
+                                                              <tr>
+                                                                <td>
+                                                                    <table align="left"><tr><td style="padding:20px 0 0;">
+                                                                        <!-- Button : BEGIN -->
+                                                                            <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                                                                <tr>
+                                                                                    <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                                                    <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                                                        <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://utoronto.us14.list-manage.com/track/click?u=0626521233d08c02097c0a3c1&id=e46d0243e3&e=68b06eeb37">
+                                                                                            Read more
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        <!-- Button : END -->
+                                                                    </table>
+                                                                </td>
+                                                              </tr>
+
+
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <!--[if mso]>
+                                        </td>
+                                        <td valign="top" width=310">
+                                        <![endif]-->
+                                        <div style="display:inline-block; margin: 0 -1px; width:100%; min-width:200px; max-width:310px; vertical-align:top;" class="stack-column">
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="padding: 10px;">
+                                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px; text-align: left;">
+        
+                                                            <tr>
+                                                                <td>
+                                                                    <img src="http://engage.utoronto.ca/images/content/pagebuilder/63623_story1.jpg" width="290" height="" border="0" alt="Image of a pregnant women wearing yellow dress" style="width: 100%; max-width: 310px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="center-on-narrow">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;" class="stack-column">
+                                                                    <h3 style="margin: 20px 0; font-size: 24px; line-height: 30px;font-weight: bold; font-family: Arial, sans-serif;"></h3>
+                                                                    <span style="font-size: 18px"><strong>PhD student aims to raise awareness of hypertensive disorders of pregnancy among Black Canadian women</strong>
+                                                                    
+                                                                    </span>
+
+                                                                </td>
+                                                            </tr>
+
+                                                            
+
+
+
+                                                              <tr>
+                                                                <td>
+                                                                    <table align="left"><tr><td style="padding:20px 0 0;">
+                                                                        <!-- Button : BEGIN -->
+                                                                            <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                                                                <tr>
+                                                                                    <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                                                    <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                                                        <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://bloomberg.nursing.utoronto.ca/research/phd-student-aims-to-raise-awareness-of-hypertensive-disorders-of-pregnancy-among-black-canadian-women/">
+                                                                                            Read more
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        <!-- Button : END -->
+                                                                    </table>
+                                                                </td>
+                                                              </tr>
+
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <!--[if mso]>
+                                        </td>
+                                        </tr>
+                                        </table>
+                                        <![endif]-->
+                                    </td>
+                                </tr>
+                                <!-- Half-Width Column : END -->       
+
+
+
+
+                                 <!-- Half-Width Column : BEGIN -->
+                                 <tr>
+                                    <td align="center" valign="top" style="font-size:0; background-color: #ffffff; padding: 10px;">
+                                        <!--[if mso]>
+                                        <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="620">
+                                        <tr>
+                                        <td valign="top" width="310">
+                                        <![endif]-->
+                                        <div style="display:inline-block; margin: 0 -1px; width:100%; min-width:200px; max-width:310px; vertical-align:top;" class="stack-column">
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="padding: 10px;">
+                                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px; text-align: left;">
+        
+                                                            <tr>
+                                                                <td>
+                                                                    <img src="http://engage.utoronto.ca/images/content/pagebuilder/63623_story4.jpg" width="290" height="" border="0" alt="Image of a pregnant women wearing yellow dress" style="width: 100%; max-width: 310px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="center-on-narrow">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;" class="stack-column">
+                                                                    <h3 style="margin: 20px 0; font-size: 24px; line-height: 30px;font-weight: bold; font-family: Arial, sans-serif;"></h3>
+                                                                    <span style="font-size: 18px"><strong>Nursing's Quinn Grundy takes on new leadership role at research centre focused on governance in pharmaceutical sector</strong>
+                                                                    <br/>
+                                                                    
+                                                                    </span>
+
+                                                                </td>
+                                                            </tr>
+                                                            
+
+
+                                                              <tr>
+                                                                <td>
+                                                                    <table align="left"><tr><td style="padding:20px 0 0;">
+                                                                        <!-- Button : BEGIN -->
+                                                                            <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                                                                <tr>
+                                                                                    <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                                                    <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                                                        <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://utoronto.us14.list-manage.com/track/click?u=0626521233d08c02097c0a3c1&id=edd4c10dae&e=68b06eeb37">
+                                                                                            Read more
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        <!-- Button : END -->
+                                                                    </table>
+                                                                </td>
+                                                              </tr>
+
+
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <!--[if mso]>
+                                        </td>
+                                        <td valign="top" width=310">
+                                        <![endif]-->
+                                        <div style="display:inline-block; margin: 0 -1px; width:100%; min-width:200px; max-width:310px; vertical-align:top;" class="stack-column">
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="padding: 10px;">
+                                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px; text-align: left;">
+        
+                                                            <tr>
+                                                                <td>
+                                                                    <img src="http://engage.utoronto.ca/images/content/pagebuilder/63623_story2.jpg" width="290" height="" border="0" alt="" style="width: 100%; max-width: 310px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="center-on-narrow">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;" class="stack-column">
+                                                                    <h3 style="margin: 20px 0; font-size: 24px; line-height: 30px;font-weight: bold; font-family: Arial, sans-serif;"></h3>
+                                                                    <span style="font-size: 18px"><strong>Nursing's Kristin Cleverley has co-led a study that finds early symptoms of psychosis spectrum disorder in youth accessing mental health services</strong>
+                                                                    
+                                                                    </span>
+
+                                                                </td>
+                                                            </tr>
+
+                                                            
+
+
+
+                                                              <tr>
+                                                                <td>
+                                                                    <table align="left"><tr><td style="padding:20px 0 0;">
+                                                                        <!-- Button : BEGIN -->
+                                                                            <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                                                                <tr>
+                                                                                    <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                                                    <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                                                        <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://www.utoronto.ca/news/researchers-find-early-symptoms-psychosis-spectrum-disorder-youth-accessing-mental-health">
+                                                                                            Read more
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        <!-- Button : END -->
+                                                                    </table>
+                                                                </td>
+                                                              </tr>
+
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <!--[if mso]>
+                                        </td>
+                                        </tr>
+                                        </table>
+                                        <![endif]-->
+                                    </td>
+                                </tr>
+                                <!-- Half-Width Column : END -->       
+
+
+
+
+
+
+
+
+
+
+                               
+
+
+
+
+                                <!-- 1 Column Text + Button : BEGIN -->
+                                <tr>
+                                    <td style="background-color: #ffffff; padding: 10px 20px;" class="email-content">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">                            
+                                            <tbody><tr>
+                                                <td align="left" style="background-color: #047296; padding: 20px; font-family: Arial, sans-serif; font-size: 22px; font-weight: 700; line-height: 22px; color: #ffffff;" class="mobile-pad">
+                                                    Impact of Giving
+                                                </td>
+                                            </tr>                   
+                                        </tbody></table>
+                                    </td>
+                                </tr>
+                                <!-- 1 Column Text + Button : END -->   
+                                
+
+
+                <!-- Full-Width Text Column : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 640px;">
+
+                              
+
+
+
+                            
+
+                                  <tr>
+                                    <td style="background-color: #ffffff;padding: 20px; text-align: center;">
+                                        <img data-file-id="1172035" height="auto" src="http://engage.utoronto.ca/images/content/pagebuilder/63623_SafiyaNur.jpg" style="width: 100%; max-width: 600px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto; display: block;" width="600" class="g-img" alt="Image of Safiya Nur">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding: 0 20px; font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;">
+                                        Safiya Nur, second-year BScN student, is Bloomberg Nursing's U of T Giving Day Ambassador. As a recipient of the Black/African Canadian Nursing Student Scholarship, Safiya is inspired to share her story about why she is passionate about Bloomberg Nursing&rsquo;s efforts to help students reach their academic and career goals.
+                                      </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        <table align="left"><tr><td style="padding:20px;">
+                                            <!-- Button : BEGIN -->
+                                                <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                                    <tr>
+                                                        <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                        <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                            <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://bloomberg.nursing.utoronto.ca/alumni/u-of-t-giving-day-2024/">
+                                                                Read more
+                                                            </a>
+                                                        </td>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            <!-- Button : END -->
+                                        </table>
+                                    </td>
+                                  </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- Full-Width Text Column : END -->    
+
+
+
+                        <!-- 1 Column Text + Button : BEGIN -->
+                        <tr>
+                            <td style="background-color: #ffffff; padding: 10px 20px;" class="email-content">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">                            
+                                    <tbody><tr>
+                                        <td align="left" style="background-color: #047296; padding: 20px; font-family: Arial, sans-serif; font-size: 22px; font-weight: 700; line-height: 22px; color: #ffffff;" class="mobile-pad">
+                                            Events and Webinars
+                                        </td>
+                                    </tr>                   
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <!-- 1 Column Text + Button : END -->  
+               
+                
+
+                
+
+                <!-- Full-Width Text Column : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 640px;">
+
+                                  <tr>
+                                    <td style="background-color: #ffffff;padding: 20px; text-align: center;">
+                                        <img data-file-id="1172035" height="auto" src="http://engage.utoronto.ca/images/content/pagebuilder/63350_banner.png" style="width: 100%; max-width: 600px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto; display: block;" width="600" class="g-img" alt="Image of Navisha Weersinghe">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="font-family: Arial, sans-serif; font-size: 18px; line-height: 26px; color: #000000; text-align: left; padding:20px;margin: 20px 0;">
+                                        <h2 style="margin: 0; font-size: 30px; line-height: 34px;font-weight: bold;"></h2>
+                                        <span style="font-size: 18px; color:#000000;">
+                                            <strong>
+                                                Advancing Black Nursing Leadership
+                                                
+                                            </strong>
+                                            <br/>
+                                            Join Bloomberg Nursing for our month-long webinar series featuring alumni and students discussing the impact of Black nurses in leadership, and the importance of establishing their voice through community. 
+                                            <br/><br/>
+                                        </span>
+                                        <span style="font-size: 16px; color:#000000;">
+                                            <strong>Belonging &ndash; Perspectives from a Nurse Leader</strong>
+                                            <br/>
+                                            Featuring Natalie Madramootoo (MN 21')<br /> Tuesday, February 13, 2024 |&nbsp;12 PM - 1 PM EST | Join us online via Zoom
+                                            
+                                        </span>
+                                    </td>
+                                </tr>
+
+
+
+                                </table>
+                            </td>
+                        </tr>
+
+
+               
+
+
+
+                  <tr>
+                    <td style="background-color: #FFFFFF;">
+                        <table align="left"><tr><td style="padding:0 20px 20px;">
+                            <!-- Button : BEGIN -->
+                                <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                    <tr>
+                                        <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                        <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                            <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://secureca.imodules.com/s/731/form-blank/index.aspx?sid=731&gid=52&pgid=22238&cid=36555">
+                                                Register to attend
+                                            </a>
+                                        </td>
+                                        </td>
+                                    </tr>
+                                </table>
+                            <!-- Button : END -->
+                        </table>
+                    </td>
+                  </tr>
+
+                <!-- Full-Width Text Column : END -->    
+
+
+                <!-- Full-Width Text Column : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 640px;">
+
+                              <tr>
+                                  <td style="padding: 20px; font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;">
+                                        <h3 style="font-size: 22px; margin: 0;"></h3>
+                                        <span style="font-size: 16px;"><strong>The Black Nursing Student Experience: Finding our Voice Through Community</strong>
+                                        <br/>
+                                        Featuring Sarah Elkhalifa and Safiya Nur (Current BScN students)
+                                        <br /> 
+                                        Wednesday, February 21, 2024 |&nbsp;12 PM &ndash; 1 PM EST | Join us online via Zoom
+                                        </span>
+                                    </td>
+                                </tr>
+                                  
+
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- Full-Width Text Column : END --> 
+
+
+                     
+
+                          <tr>
+                            <td style="background-color: #FFFFFF;">
+                                <table align="left"><tr><td style="padding:0 20px 20px;">
+                                    <!-- Button : BEGIN -->
+                                        <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                            <tr>
+                                                <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                    <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://secureca.imodules.com/s/731/form-blank/index.aspx?sid=731&gid=52&pgid=22241&cid=36559">
+                                                        Register to attend
+                                                    </a>
+                                                </td>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    <!-- Button : END -->
+                                </table>
+                            </td>
+                          </tr>
+
+
+
+                                          <!-- Full-Width Text Column : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 640px;">
+
+                              <tr>
+                                  <td style="padding: 20px; font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;">
+                                        <h3 style="font-size: 22px; margin: 0;"></h3>
+                                        <span style="font-size: 16px;"><strong>Beyond the Bedside: Navigating Your Nursing Career Toward Infinite Opportunities</strong>
+                                        <br/>
+                                        Featuring Denika McPherson (MN 21&rsquo;)
+                                        <br /> 
+                                        Wednesday, February 28, 2024 |&nbsp;12 PM &ndash; 1 PM EST | Join us online via Zoom
+                                        
+                                        </span>
+                                    </td>
+                                </tr>
+                                  
+
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- Full-Width Text Column : END --> 
+
+
+                     
+
+                          <tr>
+                            <td style="background-color: #FFFFFF;">
+                                <table align="left"><tr><td style="padding:0 20px 20px;">
+                                    <!-- Button : BEGIN -->
+                                        <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                            <tr>
+                                                <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                    <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://secureca.imodules.com/s/731/form-blank/index.aspx?sid=731&gid=52&pgid=22244&cid=36563">
+                                                        Register to attend
+                                                    </a>
+                                                </td>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    <!-- Button : END -->
+                                </table>
+                            </td>
+                          </tr>
+
+
+                <!-- HR Divider : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff; padding-bottom: 5px;" class="mobile-hr">
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; width: 100%;">
+                            <tr>
+                                <td style="background:none; border-bottom: 1px solid #000000; line-height: 0; max-width: 600px; width: 100%;">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- HR Divider : END -->
+
+                          
+                <!-- Thumbnail Left, Text Right - Two-Thirds Column Layout : BEGIN -->
+                <tr>
+                    <!-- dir=ltr is where the magic happens. This can be changed to dir=rtl to swap the alignment on wide while maintaining stack order on narrow. -->
+                    <td dir="ltr" height="100%" valign="top" width="100%" style="font-size:0; background-color: #ffffff; padding: 10px; max-width: 640px;">
+                        <!--[if mso]>
+                        <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="620" style="width: 620px;">
+                        <tr>
+                        <td valign="top" width="200" style="width: 200px;">
+                        <![endif]-->
+                        <div style="display:inline-block; margin: 0 -1px; max-width: 200px; min-width:160px; vertical-align:top; width:100%;" class="stack-column">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td dir="ltr" style="padding: 10px;">
+                                        <img src="http://engage.utoronto.ca/images/content/pagebuilder/63623_MonicaParry.jpg" width="180" height="auto" border="0" alt="image of Monica Parry" class="center-on-narrow" style="width: 100%; max-width: 310px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 15px; color: #555555;">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--[if mso]>
+                        </td>
+                        <td valign="top" width="420" style="width: 420px;">
+                        <![endif]-->
+                        <div style="display:inline-block; margin: 0; max-width: 420px; vertical-align:top;" class="stack-column">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr>
+                                    <td dir="ltr" style="font-family: Arial, sans-serif; font-size: 14px;line-height: 26px; color: #000000; padding: 10px; text-align: left;">
+                                        <h3 style="margin: 0 0 20px 0; font-family: Arial, sans-serif; font-size: 18px; line-height: 28px; color: #000000; font-weight: bold;">Bloomberg Nursing Rounds</h3>
+                                        <span style="font-size: 16px;">
+                                            <strong>
+                                                Artificial Intelligence and Conversational Chatbots for Cardiovascular Health: Risks or Reality?
+                                            </strong>
+                                            <br/><br/>
+                                            Featuring Professor Monica Parry
+                                            <br/>
+                                            Monday, March 4, 2024 | 12 PM &ndash; 1 PM EST | Online via Zoom</span>
+                                        
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--[if mso]>
+                        </td>
+                        </tr>
+                        </table>
+                        <![endif]-->
+                    </td>
+                </tr>
+                <!-- Thumbnail Left, Text Right - Two-Thirds Column Layout : END -->  
+
+
+
+
+
+
+
+                  <tr>
+                    <td style="background-color: #FFFFFF;">
+                        <table align="left"><tr><td style="padding:0 20px 20px;">
+                            <!-- Button : BEGIN -->
+                                <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                    <tr>
+                                        <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                        <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                            <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://secureca.imodules.com/s/731/form-blank/index.aspx?sid=731&gid=52&pgid=22300&cid=36638">
+                                                Register to attend
+                                            </a>
+                                        </td>
+                                        </td>
+                                    </tr>
+                                </table>
+                            <!-- Button : END -->
+                        </table>
+                    </td>
+                  </tr>
+   
+
+
+
+
+
+
+
+
+
+                       
+                      
+
+
+
+
+
+                        <!-- 1 Column Text + Button : BEGIN -->
+                        <tr>
+                            <td style="background-color: #ffffff; padding: 10px 20px;" class="email-content">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">                            
+                                    <tbody><tr>
+                                        <td align="left" style="background-color: #047296; padding: 20px; font-family: Arial, sans-serif; font-size: 22px; font-weight: 700; line-height: 22px; color: #ffffff;" class="mobile-pad">
+                                            Continuing Education
+                                        </td>
+                                    </tr>                   
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <!-- 1 Column Text + Button : END -->  
+
+
+                <!-- Full-Width Text Column : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 640px;">
+
+                              <tr>
+                                  <td style="padding: 20px; font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;">
+                                        <h3 style="font-size: 22px; margin: 0;"></h3>
+
+                                        <span style="font-size: 18px;">
+                                            <strong>
+                                                Centre for Professional Development Programs and Courses
+                                            </strong>
+                                            <br/><br/>
+                                        </span>
+   
+
+
+                                        <span style="font-size: 16px;">
+                                            Expand your nursing knowledge and skillset with courses and certificates from Bloomberg Nursing's Centre for Professional Development.
+                                            <br/><br/>
+                                            <strong>Early bird registration is available for the following courses:</strong>
+                                        <br/><br/>
+                                        </span>
+                                        <a href="https://bloomberg.nursing.utoronto.ca/cpd-course/managing-business/" style="color: #047296; text-decoration: underline;">Leadership &amp; Management 2: Managing People</a>
+                                        <br/>
+                                        Early bird deadline &ndash; February 16, 2024
+                                        <br/><br/>
+                                        <a href="https://bloomberg.nursing.utoronto.ca/cpd-course/mental-health-3-for-nurse-practitioners/" style="color: #047296; text-decoration: underline;">Mental Health 3 for Nurse Practitioners</a>
+                                        <br/>
+                                        Early bird deadline &ndash; March 1, 2024
+                                        <br/><br/>
+                                        <a href="https://bloomberg.nursing.utoronto.ca/cpd-course/care-of-the-hospitalized-adult-3/" style="color: #047296; text-decoration: underline;">Care of the Hospitalized Adult 3</a>
+                                        <br/>
+                                        Early bird deadline &ndash; March 1, 2024
+                                        <br/><br/>
+                                        <a href="https://bloomberg.nursing.utoronto.ca/cpd-course/review-of-health-assessment-across-the-lifespan/" style="color: #047296; text-decoration: underline;">Review of Health Assessment Across the Lifespan</a>
+                                        <br/>
+                                        Early bird deadline &ndash; March 6, 2024
+                                        <br/><br/>
+                                        <a href="https://bloomberg.nursing.utoronto.ca/cpd-course/assessment-and-evaluation/" style="color: #047296; text-decoration: underline;">Nursing Education 3: Assessment and Evaluation</a>
+                                        <br/>
+                                        Early bird deadline &ndash; March 15, 2024
+                                    </td>
+                                </tr>
+                                  
+
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- Full-Width Text Column : END --> 
+
+
+                    
+
+
+
+
+                          <tr>
+                            <td style="background-color: #FFFFFF;">
+                                <table align="left"><tr><td style="padding:0 20px 20px;">
+                                    <!-- Button : BEGIN -->
+                                        <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                            <tr>
+                                                <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                    <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://bloomberg.nursing.utoronto.ca/professional-development/">
+                                                        View CPD courses
+                                                    </a>
+                                                </td>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    <!-- Button : END -->
+                                </table>
+                            </td>
+                          </tr>
+
+                <!-- HR Divider : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff; padding-bottom: 5px;" class="mobile-hr">
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; width: 100%;">
+                            <tr>
+                                <td style="background:none; border-bottom: 1px solid #000000; line-height: 0; max-width: 600px; width: 100%;">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- HR Divider : END -->
+
+
+
+
+                                  <!-- Full-Width Text Column : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 640px;">
+                              
+                                <tr>
+                                    <td style="padding:20px 20px 0; font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;">
+                                        <span style="font-size: 18px;">
+                                            <strong>
+                                                Info Session: Graduate Education in Health System Leadership at Bloomberg Nursing
+                                            </strong>
+                                        </span>
+                               
+                                    </td>
+                                </tr>
+
+                                  <tr>
+                                    <td style="background-color: #ffffff;padding: 20px; text-align: center;">
+                                        <img data-file-id="1172035" height="auto" src="http://engage.utoronto.ca/images/content/pagebuilder/63623_announcement.png" style="width: 100%; max-width: 600px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto; display: block;" width="600" class="g-img" alt="">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="padding: 0 20px; font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;">
+                                        <span style="font-size: 18px;">
+                                            <strong>
+                                                Are you ready to grow your career in healthcare?
+                                            </strong>
+                                        </span>
+                                        <br/><br/>
+                                        Find out more about how a graduate degree from Bloomberg Nursing can help you reach your professional development goals.<br /> <br /> Join us for an info session on&nbsp;<strong>Graduate Education in Health System Leadership</strong>.<br /> Thursday, February 22, 2024 | 5 PM &ndash; 6 PM | Online
+                                      </td>
+                                  </tr>
+
+                                  <tr>
+                                    <td>
+                                        <table align="left"><tr><td style="padding:20px;">
+                                            <!-- Button : BEGIN -->
+                                                <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                                    <tr>
+                                                        <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                        <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                            <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://bloomberg.nursing.utoronto.ca/event/graduate-education-for-leadership-and-health-systems/">
+                                                                Register to attend
+                                                            </a>
+                                                        </td>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            <!-- Button : END -->
+                                        </table>
+                                    </td>
+                                  </tr>
+
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- Full-Width Text Column : END -->    
+
+
+                        <!-- 1 Column Text + Button : BEGIN -->
+                        <tr>
+                            <td style="background-color: #ffffff; padding: 10px 20px;" class="email-content">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">                            
+                                    <tbody><tr>
+                                        <td align="left" style="background-color: #047296; padding: 20px; font-family: Arial, sans-serif; font-size: 22px; font-weight: 700; line-height: 22px; color: #ffffff;" class="mobile-pad">
+                                            Faculty Impact
+                                        </td>
+                                    </tr>                   
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <!-- 1 Column Text + Button : END --> 
+
+
+
+                                <!-- Half-Width Column : BEGIN -->
+                                <tr>
+                                    <td align="center" valign="top" style="font-size:0; background-color: #ffffff; padding: 10px;">
+                                        <!--[if mso]>
+                                        <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="620">
+                                        <tr>
+                                        <td valign="top" width="310">
+                                        <![endif]-->
+                                        <div style="display:inline-block; margin: 0 -1px; width:100%; min-width:200px; max-width:310px; vertical-align:top;" class="stack-column">
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="padding: 10px;">
+                                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px; text-align: left;">
+                                                            <tr>
+                                                                <td style="font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;" class="stack-column">
+                                            
+                                                                    <span style="font-size: 18px"><strong>Connaught Award recipient designing an app to help parents of children with cancer manage their pain</strong></span>
+                                                                    
+                                                                    <br/><br/>
+                                                                    Lindsay Jibb, an assistant professor at the Lawrence Bloomberg Faculty of Nursing, is piloting a digital health intervention that aims to assist parents of children with cancer in managing their child&rsquo;s cancer pain at home.
+                                                                    
+                                                                    
+                                                                    
+                                                                    
+
+                                                                </td>
+                                                            </tr>
+                                                            
+
+
+
+
+
+                                                              <tr>
+                                                                <td style="background-color: #FFFFFF;">
+                                                                    <table align="left"><tr><td style="padding:20px 0 0;">
+                                                                        <!-- Button : BEGIN -->
+                                                                            <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                                                                <tr>
+                                                                                    <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                                                    <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                                                        <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 200px; text-align: center;" href="https://defygravitycampaign.utoronto.ca/news-and-stories/connaught-fund-recipient-designing-pain-management-app-children-cancer/">
+                                                                                            Read more
+                                                                                        </a>
+                                                                                    </td>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        <!-- Button : END -->
+                                                                    </table>
+                                                                </td>
+                                                              </tr>
+
+
+    
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <!--[if mso]>
+                                        </td>
+                                        <td valign="top" width=310">
+                                        <![endif]-->
+                                        <div style="display:inline-block; margin: 0 -1px; width:100%; min-width:200px; max-width:310px; vertical-align:top;" class="stack-column">
+                                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="padding: 10px;">
+                                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px; text-align: left;">
+                                                            <tr>
+                                                                <td>
+                                                                    <img src="http://engage.utoronto.ca/images/content/pagebuilder/63623_LindsayJibb.jpg" width="290" height="" border="0" alt="image of Lindsay Jibb" style="width: 100%; max-width: 310px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555;" class="center-on-narrow">
+                                                                </td>
+                                                            </tr>
+
+
+        
+  
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <!--[if mso]>
+                                        </td>
+                                        </tr>
+                                        </table>
+                                        <![endif]-->
+                                    </td>
+                                </tr>
+                                <!-- Half-Width Column : END -->  
+
+
+
+                        <!-- 1 Column Text + Button : BEGIN -->
+                        <tr>
+                            <td style="background-color: #ffffff; padding: 10px 20px;" class="email-content">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">                            
+                                    <tbody><tr>
+                                        <td align="left" style="background-color: #047296; padding: 20px; font-family: Arial, sans-serif; font-size: 22px; font-weight: 700; line-height: 22px; color: #ffffff;" class="mobile-pad">
+                                            Support Bloomberg Nursing
+                                        </td>
+                                    </tr>                   
+                                </tbody></table>
+                            </td>
+                        </tr>
+                        <!-- 1 Column Text + Button : END --> 
+
+
+                        <tr>
+                            <td style="background-color: #ffffff;padding: 20px; text-align: center;">
+                                <img data-file-id="1172035" height="auto" src="http://engage.utoronto.ca/images/content/pagebuilder/62739_NavishaWeersinghe.jpeg" style="width: 100%; max-width: 600px; height: auto; background: #D5D5D5; font-family: Arial, sans-serif; font-size: 15px; line-height: 15px; color: #555555; margin: auto; display: block;" width="600" class="g-img" alt="Image of Navisha Weersinghe">
+                            </td>
+                        </tr>
+
+
+
+
+                <!-- Full-Width Text Column : BEGIN -->
+                <tr>
+                    <td style="background-color: #ffffff;">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 640px;">
+
+                              <tr>
+                                  <td style="padding: 0 20px 20px; font-family: Arial, sans-serif; font-size: 14px; line-height: 26px; color: #000000;">
+                                        
+                                        
+                                        By giving to the Lawrence Bloomberg Faculty of Nursing, you will help support our students and researchers, contributing not only to their success but also critical improvements in our health system.
+                                    </td>
+                                </tr>
+                                  
+
+                                </table>
+                            </td>
+                        </tr>
+                        <!-- Full-Width Text Column : END --> 
+
+
+                   
+
+
+
+                          <tr>
+                            <td style="background-color: #FFFFFF;">
+                                <table align="left"><tr><td style="padding:0 20px 20px;">
+                                    <!-- Button : BEGIN -->
+                                        <table align="left" role="presentation" cellspacing="0" cellpadding="0" border="0" style="border-radius: 25px;">
+                                            <tr>
+                                                <td class="button-td button-td-primary" style="border-radius: 25px; background: #047296;">
+                                                <td class="button-td button-td-primary" style="background: #047296; border-radius: 25px; font-family: Arial, sans-serif;">
+                                                    <a class="button-a button-a-primary" style="background: #047296; border: 1px solid #047296; font-family: Arial, sans-serif; font-size: 16px; line-height: 14px; font-weight:bold; text-decoration: none; padding: 15px 10px; color: #ffffff; display: block; border-radius: 25px; width: 240px; text-align: center;" href="https://engage.utoronto.ca/site/SPageServer?pagename=donate#/faculty/13">
+                                                        Learn more about ways to give
+                                                    </a>
+                                                </td>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    <!-- Button : END -->
+                                </table>
+                            </td>
+                          </tr>
+
+
+
+
+  
+
+
+
+
+
+
+		        <!-- Bloomberg Nursing logo : BEGIN -->
+                <tr>
+                    <td style="padding: 20px 20px 0; text-align: left; background-color: #DFDDDB;">
+                      <img src="http://engage.utoronto.ca/images/content/pagebuilder/BN_wordmark_pms_655.png" width="230" height="" alt="Bloomberg Nursing logo" border="0" style="height: auto;background: #DFDDDB; font-family: Arial, sans-serif; font-size: 14px;line-height: 16px;color: #555555;"/>
+                    </td>
+                  </tr>
+		        <!-- Bloomberg Nursing logo : END -->
+
+
+
+
+
+ <!-- 2 Even Columns : BEGIN -->
+<tr>
+    <td align="center" valign="top" style="font-size:0; padding: 10px; background-color: #DFDDDB;">
+    <!--[if mso]>
+    <table role="presentation" border="0" cellspacing="0" cellpadding="0" width="620">
+    <tr>
+    <td valign="top" width="310">
+    <![endif]-->
+    <div style="display:inline-block; margin: 0 -1px; width:100%; min-width:200px; max-width:310px; vertical-align:top;" class="stack-column">
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+            <td style="padding: 10px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px; text-align: left;">
+
+                
+                    <tr>
+                        <td style="font-family: Arial, sans-serif; font-size: 15px; line-height: 17px; color: #000000; padding-top: 10px;" class="stack-column-center">
+                            
+                                <strong>Lawrence Bloomberg Faculty of Nursing</strong>
+                                        <br />
+                                                      University&nbsp;of&nbsp;Toronto
+                                        <br />
+                                                      155 College St., Suite 130
+                                        <br />
+                                                      Toronto ON M5T 1P8
+                        </td>
+                    </tr>
+                    
+                </table>
+             </td>
+        </tr>
+    </table>
+    </div>
+    <!--[if mso]>
+    </td>
+    <td valign="top" width="320">
+    <![endif]-->
+    <div style="display:inline-block; margin: 0 -1px; width:100%; min-width:200px; max-width:310px; vertical-align:top;" class="stack-column">
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+            <td style="padding: 10px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="font-size: 14px;text-align: right;">
+                    <tr>
+                        <td style="font-family: Arial, sans-serif; font-size: 15px; line-height: 20px; color: #555555; padding-top: 10px;" class="stack-column-center">
+                            
+                            <a href="https://secureca.imodules.com/s/731/index_clean.aspx?sid=731&amp;gid=1&amp;pgid=1363&amp;cid=2576&amp;post_id=0" style="color: #007C89; text-decoration: none;">Update contact information</a><br />
+                            <a href="http://[[S29:DOMAIN]]/site/CO" style="color: #007C89; text-decoration: none;">Opt out of future messages</a>
+                            <p style="line-height: 35px;">
+                            <a href="https://twitter.com/UofTNursing" style="border:0; text-decoration: none;">
+                                <img src="http://engage.utoronto.ca/images/content/pagebuilder/twitterX_002554_E4E4E4.png" width="35" height="35" style="border: none; text-decoration: none; width: 100%; max-width: 35px !important; height: auto;" class="g-img"/>
+                            </a>&nbsp;
+                            <a href="https://www.facebook.com/UofTNursing" style="border:0; text-decoration: none;">
+                                <img src="http://engage.utoronto.ca/images/content/pagebuilder/facebook_002554.png" width="35" height="35" style="border: none; text-decoration: none; width: 100%; max-width: 35px !important; height: auto;" class="g-img"/>
+                            </a>&nbsp;
+                            <a href="https://www.instagram.com/uoftnursing/" style="border:0; text-decoration: none;">
+                                <img src="http://engage.utoronto.ca/images/content/pagebuilder/instagram_002554.png" width="35" height="35" style="border: none; text-decoration: none; width: 100%; max-width: 35px !important; height: auto;" class="g-img">
+                            </a>&nbsp;
+                            <a href="https://www.linkedin.com/company/lawrence-s-bloomberg-faculty-of-nursing/" style="border:0; text-decoration: none;">
+                                <img src="http://engage.utoronto.ca/images/content/pagebuilder/linkedin_002554.png" width="35" height="35" style="border: none; text-decoration: none; width: 100%; max-width: 35px !important; height: auto;" class="g-img">
+                            </a>&nbsp;
+                            <a href="https://www.youtube.com/channel/UCimnq0Vf69CfgBh6sylQ85g" style="border:0; text-decoration: none;">
+                                <img src="http://engage.utoronto.ca/images/content/pagebuilder/youtube.png" width="35" height="35" style="border: none; text-decoration: none; width: 100%; max-width: 35px !important; height: auto;" class="g-img">
+                            </a>                                                      
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <!--[if mso]>
+    </td>
+    </tr>
+    </table>
+    <![endif]-->
+    </td>
+    </tr>
+    <!-- 2 Even Columns : END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+    
+
+
+       
+
+                   
+
+
+
+
+                <!-- HR Divider : BEGIN -->
+                <tr>
+                    <td style="background-color: #DFDDDB; padding-bottom: 5px;" class="mobile-hr">
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; width: 100%;">
+                            <tr>
+                                <td style="background:none; border-bottom: 1px solid #000000; padding-top: 5px; line-height: 0; max-width: 600px; width: 100%;">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- HR Divider : END -->  
+
+                   
+                  
+ 
+                <!-- Email Footer : BEGIN -->
+                <tr>
+                    <td style="padding: 20px 0; text-align: center; background: #DFDDDB;">
+                    <img src="https://adcomms.utoronto.ca/icons/Defy-Gravity_Colour.png" width="120" height="auto" alt="The Defy Gravity wordmark." border="0" style="border: none; text-decoration: none; width: 100%; max-width: 120px !important; height: auto; background: #DFDDDB; color: #DFDDDB;" class="g-img"/>
+                    </td>
+                </tr>
+ 
+                <!-- HR Divider : BEGIN -->
+                <tr>
+                    <td style="background-color: #DFDDDB; padding-bottom: 5px;" class="mobile-hr">
+                        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" style="max-width: 600px; width: 100%;">
+                            <tr>
+                                <td style="background:none; border-bottom: 1px solid #000000; padding-top: 5px; line-height: 0; max-width: 600px; width: 100%;">&nbsp;</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- HR Divider : END -->        
+ 
+                <tr>
+                    <td style="background: #DFDDDB; padding: 20p 0x;">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 640px;">
+                        <tr>
+                            <td style="background: #DFDDDB; padding: 20p 0x;">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 640px;">
+                                <tr>
+                                <td
+                                    style=" padding: 20px 0; font-family: Arial, sans-serif; font-size: 12px; line-height: 16px; color: #000000; text-align: center;">
+                                    <span style="margin: 0">
+                                        <a href="https://secureca.imodules.com/s/731/form-blank/index.aspx?sid=731&gid=1&pgid=11544&cid=19864&_ga=2.25513085.1198261919.1668435511-1900207858.1647264585"
+                                        style="color: #000000 !important; text-decoration: underline;">
+                                          Update&nbsp;contact&nbsp;information
+                                        </a>
+                                        <br><br>
+                                        The University&nbsp;of&nbsp;Toronto respects your privacy. <br>
+                                        We do not rent, trade or sell our mailing lists. <br>
+                                        Copyright © 2024 University&nbsp;of&nbsp;Toronto. <br>
+                                        All rights reserved.
+                                        <br><br>
+                                        This e-mail was sent to [[S1:primary_email]].<br>
+                                To opt out of future messages of this kind, please <a a href="http://[[S29:DOMAIN]]/site/CO" style="color: #000000; text-decoration: underline;">contact us</a>
+                                <br><br>
+                                [[S1:member_id]]
+
+                                    </span>
+                                    <br><br>
+                                </td>
+                                </tr>
+                    </table>
+                    </td>
+                </tr>
+                <!-- Email Footer : END -->    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+       
+
+                
+      
+         
+
+
+    </table>
+</td>
+</tr>
+<!-- UofT Email Padding : END -->      
+         
+</table>
+
+<!-- Email Body : END -->
+<!--[if mso]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</div>
+
+
+<!--[if mso | IE]>
+</td>
+</tr>
+</table>
+<![endif]-->
+</center>
+</body>
+</html>
